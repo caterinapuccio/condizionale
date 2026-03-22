@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Approfondimento C1 — Condizionale passato vs. congiuntivo trapassato</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F4EE; --ink: #1C1A16; --ink-light: #5C5849; --ink-faint: #A09990;
+    --red: #C84B2F; --green: #2D6A4F; --gold: #C9973A; --blue: #2A5FA5;
+    --border: #E0DAD0; --card: #FFFFFF; --reveal-bg: #F0EDE5;
+    --purple: #6B3FA0; --purple-bg: #F3EDFB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--ink); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.75; max-width: 700px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+  .back-link { font-size: 0.8rem; color: var(--ink-faint); text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; margin-bottom: 2.5rem; }
+  .back-link:hover { color: var(--ink); }
+  .level-badge { display: inline-block; background: var(--purple-bg); color: var(--purple); border: 1px solid #C9A8E8; border-radius: 999px; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.2rem 0.75rem; margin-bottom: 1rem; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.2; margin-bottom: 0.5rem; }
+  h1 em { font-style: italic; color: var(--purple); }
+  .intro { font-size: 1rem; color: var(--ink-light); margin-bottom: 2.5rem; max-width: 560px; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 1.35rem; margin: 2.5rem 0 1rem; color: var(--ink); }
+  p { margin-bottom: 0.85rem; font-size: 0.95rem; color: var(--ink-light); }
+  strong { color: var(--ink); font-weight: 500; }
+  .rule-block { background: var(--reveal-bg); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: 0.7rem 1rem; margin: 1rem 0; font-size: 0.9rem; }
+  .example-pair { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin: 1rem 0; }
+  .example-pair .ex-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.75rem; font-weight: 500; }
+  .ex-cond .ex-label { color: var(--blue); }
+  .ex-cong .ex-label { color: var(--purple); }
+  .ex-sent { font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .ex-cond .ex-sent { color: var(--blue); font-style: italic; }
+  .ex-cong .ex-sent { color: var(--purple); font-style: italic; }
+  .ex-expl { font-size: 0.88rem; color: var(--ink-light); }
+  .ex-de { font-size: 0.82rem; color: var(--ink-faint); margin-top: 0.2rem; }
+  .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0; }
+  .comp-col { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.25rem; }
+  .comp-col .comp-title { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; margin-bottom: 0.75rem; }
+  .comp-col.cond .comp-title { color: var(--blue); }
+  .comp-col.cong .comp-title { color: var(--purple); }
+  .comp-col .form { font-family: 'DM Serif Display', serif; font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .comp-col.cond .form { color: var(--blue); }
+  .comp-col.cong .form { color: var(--purple); }
+  .comp-col .form-detail { font-size: 0.8rem; color: var(--ink-light); }
+  .verb-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.5rem 0; }
+  .verb-chip { font-size: 0.82rem; background: var(--reveal-bg); border: 1px solid var(--border); border-radius: 6px; padding: 0.2rem 0.55rem; color: var(--ink-light); }
+  .divider { height: 1px; background: var(--border); margin: 2.5rem 0; }
+  .summary-box { background: var(--reveal-bg); border-radius: 12px; padding: 1.25rem 1.5rem; margin-top: 2rem; }
+  .summary-box h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; margin-bottom: 0.75rem; }
+  .summary-box ul { list-style: none; padding: 0; }
+  .summary-box li { font-size: 0.9rem; color: var(--ink-light); padding: 0.3rem 0; padding-left: 1.2rem; position: relative; }
+  .summary-box li::before { content: '→'; position: absolute; left: 0; color: var(--gold); }
+  .quiz-section { margin-top: 3rem; }
+  .quiz-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem 1.5rem; margin-bottom: 1rem; }
+  .quiz-num { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.5rem; }
+  .quiz-q { font-size: 1rem; color: var(--ink); line-height: 1.9; margin-bottom: 0.75rem; }
+  .quiz-q select { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; padding: 0.25rem 0.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--cream); color: var(--ink); cursor: pointer; }
+  .qbtn { font-size: 0.78rem; padding: 0.4rem 1.1rem; border-radius: 999px; border: 1px solid var(--border); background: transparent; color: var(--ink-light); cursor: pointer; transition: all 0.2s; }
+  .qbtn:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .qbtn:disabled { opacity: 0.4; cursor: default; pointer-events: none; }
+  .qfb { display: none; font-size: 0.85rem; margin-top: 0.6rem; padding: 0.55rem 0.9rem; border-radius: 8px; }
+  .qfb.ok { display: block; background: #EAF5EE; color: var(--green); }
+  .qfb.no { display: block; background: #FBF0ED; color: var(--red); }
+  @media (max-width: 500px) { .comparison-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← Torna alle correzioni B2</a>
+
+<div class="level-badge">Livello C1</div>
+<h1>Condizionale passato<br><em>vs.</em> congiuntivo trapassato</h1>
+<p class="intro">Quando si usa <em>pensavo che sarebbe venuto</em> e quando <em>pensavo che fosse venuto</em>? Due forme grammaticali corrette, con sfumature sottili. Questa è grammatica di livello C1.</p>
+
+<div class="divider"></div>
+
+<h2>Le due costruzioni</h2>
+
+<div class="comparison-grid">
+  <div class="comp-col cond">
+    <div class="comp-title">Condizionale passato</div>
+    <div class="form">avrei / sarei + participio</div>
+    <div class="form-detail">es. <em>sarebbe venuto · avrebbe fatto</em></div>
+  </div>
+  <div class="comp-col cong">
+    <div class="comp-title">Congiuntivo trapassato</div>
+    <div class="form">avessi / fossi + participio</div>
+    <div class="form-detail">es. <em>fosse venuto · avesse fatto</em></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<h2>Quando si usa il condizionale passato</h2>
+
+<p>Si usa dopo verbi che esprimono <strong>aspettativa, dichiarazione o certezza su un evento futuro rispetto al passato</strong>. L'evento è proiettato in avanti nel tempo — il parlante si aspettava che succedesse.</p>
+
+<div class="rule-block">
+  Verbi che reggono il condizionale passato:<br>
+  <strong>sapere, dire, promettere, sperare (che), aspettarsi, annunciare, prevedere</strong>
+</div>
+
+<div class="example-pair ex-cond">
+  <div class="ex-label">Condizionale passato — aspettativa non realizzata</div>
+  <div class="ex-sent">"Pensavo che sarebbe venuto."</div>
+  <div class="ex-expl">Mi aspettavo che venisse — ma non è venuto. L'evento era proiettato nel futuro rispetto al momento del pensiero.</div>
+  <div class="ex-de">= Ich dachte, er würde kommen (aber er ist nicht gekommen).</div>
+</div>
+
+<div class="example-pair ex-cond">
+  <div class="ex-label">Condizionale passato — futuro nel passato</div>
+  <div class="ex-sent">"Sapeva che il mercato sarebbe cambiato."</div>
+  <div class="ex-expl">Al momento in cui "sapeva", il cambiamento era ancora futuro. Ora sappiamo che è successo (o no).</div>
+  <div class="ex-de">= Er wusste, dass sich der Markt ändern würde.</div>
+</div>
+
+<div class="example-pair ex-cond">
+  <div class="ex-label">Condizionale passato — promessa</div>
+  <div class="ex-sent">"Ha promesso che sarebbe tornato."</div>
+  <div class="ex-expl">Al momento della promessa, il ritorno era futuro. Forma corretta dopo verbi di dichiarazione.</div>
+  <div class="ex-de">= Er hat versprochen, dass er zurückkommen würde.</div>
+</div>
+
+<div class="divider"></div>
+
+<h2>Quando si usa il congiuntivo trapassato</h2>
+
+<p>Si usa dopo verbi che esprimono <strong>opinione soggettiva, credenza o percezione di qualcosa già accaduto</strong>. L'evento non è proiettato in avanti — il parlante credeva che fosse già successo nel momento in cui pensava.</p>
+
+<div class="rule-block">
+  Verbi che reggono il congiuntivo trapassato:<br>
+  <strong>credere (che), pensare (che) nel senso di "ritenere", supporre, immaginare, sembrare</strong><br>
+  — quando l'evento è percepito come già compiuto al momento del pensiero
+</div>
+
+<div class="example-pair ex-cong">
+  <div class="ex-label">Congiuntivo trapassato — fatto percepito come già avvenuto</div>
+  <div class="ex-sent">"Pensavo che fosse venuto."</div>
+  <div class="ex-expl">Credevo che fosse già arrivato — in quel momento mi sembrava che l'evento fosse già successo. Non è un'aspettativa sul futuro, ma una credenza sul presente/passato.</div>
+  <div class="ex-de">= Ich dachte, er sei (bereits) gekommen / er wäre schon da.</div>
+</div>
+
+<div class="example-pair ex-cong">
+  <div class="ex-label">Congiuntivo trapassato — credenza errata sul passato</div>
+  <div class="ex-sent">"Credevo che avesse già finito."</div>
+  <div class="ex-expl">Pensavo che avesse completato il lavoro prima — ma non era così. Evento percepito come già concluso.</div>
+  <div class="ex-de">= Ich dachte, er hätte schon fertig gemacht.</div>
+</div>
+
+<div class="example-pair ex-cong">
+  <div class="ex-label">Congiuntivo trapassato — supposizione sul passato</div>
+  <div class="ex-sent">"Immaginavo che fossero partiti in anticipo."</div>
+  <div class="ex-expl">Supponevo che la partenza fosse già avvenuta prima del mio pensiero.</div>
+  <div class="ex-de">= Ich nahm an, dass sie früher abgefahren waren.</div>
+</div>
+
+<div class="divider"></div>
+
+<h2>Il caso ambiguo: "pensavo che"</h2>
+
+<p><em>Pensare che</em> è il verbo più ambiguo perché può introdurre sia un'aspettativa futura sia una credenza su un fatto già avvenuto. Il contesto decide:</p>
+
+<div class="example-pair ex-cond">
+  <div class="ex-label">Con condizionale passato — mi aspettavo che succedesse</div>
+  <div class="ex-sent">"Pensavo che Marco sarebbe venuto alla festa."</div>
+  <div class="ex-expl">Focus sull'aspettativa: credevo che Marco avrebbe partecipato (futuro rispetto al momento del pensiero). Equivale a: <em>mi aspettavo che venisse</em>.</div>
+</div>
+
+<div class="example-pair ex-cong">
+  <div class="ex-label">Con congiuntivo trapassato — credevo che fosse già lì</div>
+  <div class="ex-sent">"Pensavo che Marco fosse venuto alla festa."</div>
+  <div class="ex-expl">Focus sulla credenza: credevo che Marco fosse già arrivato — ma quando sono arrivato io, non c'era. L'arrivo era percepito come già avvenuto al momento del pensiero.</div>
+</div>
+
+<div class="divider"></div>
+
+<h2>Differenza con il tedesco</h2>
+
+<p>In tedesco il <strong>Konjunktiv II</strong> (<em>würde + Infinitiv</em> o <em>Konjunktiv Plusquamperfekt</em>) copre spesso entrambi i casi senza distinzione netta. In italiano la differenza è grammaticalizzata in due tempi verbali distinti.</p>
+
+<div class="rule-block">
+  <strong>Tedesco:</strong> <em>Ich dachte, er würde kommen</em> = ambiguo (aspettativa o credenza?)<br><br>
+  <strong>Italiano:</strong><br>
+  <em>Pensavo che <strong>sarebbe venuto</strong></em> = mi aspettavo che venisse (futuro nel passato)<br>
+  <em>Pensavo che <strong>fosse venuto</strong></em> = credevo che fosse già arrivato (fatto percepito come compiuto)
+</div>
+
+<div class="divider"></div>
+
+<div class="summary-box">
+  <h3>Regola pratica</h3>
+  <ul>
+    <li>L'evento è proiettato nel <strong>futuro</strong> rispetto al pensiero → <strong>condizionale passato</strong> (sarebbe venuto)</li>
+    <li>L'evento è percepito come già <strong>avvenuto</strong> al momento del pensiero → <strong>congiuntivo trapassato</strong> (fosse venuto)</li>
+    <li>Dopo <em>dire, promettere, sapere, annunciare, prevedere</em> → quasi sempre <strong>condizionale passato</strong></li>
+    <li>Dopo <em>credere, supporre, immaginare, sembrare</em> → spesso <strong>congiuntivo trapassato</strong> (se l'evento è già passato)</li>
+    <li><em>Pensare che</em> → dipende dal contesto: aspettativa futura o credenza su fatto compiuto?</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<div class="quiz-section">
+  <h2>Mini-esercizio C1</h2>
+  <p>Scegli la forma corretta in base al contesto.</p>
+
+  <div class="quiz-card">
+    <div class="quiz-num">1 · 4</div>
+    <div class="quiz-q">Ho aperto la porta della sala riunioni — ma era vuota. <em>"Credevo che i colleghi
+      <select id="c1"><option value="">—</option><option value="a">fossero già arrivati</option><option value="b">sarebbero già arrivati</option></select>."</em></div>
+    <button class="qbtn" onclick="qchk('c1','a','Credevo che fossero già arrivati = pensavo che l\'arrivo fosse già avvenuto (fatto percepito come compiuto) → congiuntivo trapassato.')">verifica</button>
+    <div class="qfb" id="c1f"></div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-num">2 · 4</div>
+    <div class="quiz-q">Prima del viaggio mi avevano detto: "Il volo è in orario." Ma era in ritardo. <em>"Pensavo che il volo
+      <select id="c2"><option value="">—</option><option value="a">fosse partito in orario</option><option value="b">sarebbe partito in orario</option></select>."</em></div>
+    <button class="qbtn" onclick="qchk('c2','b','Sarebbe partito = mi aspettavo che partisse in orario (aspettativa su evento futuro rispetto al pensiero) → condizionale passato.')">verifica</button>
+    <div class="qfb" id="c2f"></div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-num">3 · 4</div>
+    <div class="quiz-q">Ho chiamato Marco, ma era già a casa. <em>"Non sapevo che
+      <select id="c3"><option value="">—</option><option value="a">fosse già tornato</option><option value="b">sarebbe già tornato</option></select>."</em></div>
+    <button class="qbtn" onclick="qchk('c3','a','Fosse già tornato = non sapevo che il ritorno fosse già avvenuto (fatto percepito come già compiuto) → congiuntivo trapassato.')">verifica</button>
+    <div class="qfb" id="c3f"></div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="quiz-num">4 · 4</div>
+    <div class="quiz-q">Prima della riunione, il direttore aveva annunciato cambiamenti. <em>"Aveva annunciato che l'azienda
+      <select id="c4"><option value="">—</option><option value="a">avesse cambiato strategia</option><option value="b">avrebbe cambiato strategia</option></select>."</em></div>
+    <button class="qbtn" onclick="qchk('c4','b','Avrebbe cambiato = il cambiamento era futuro rispetto all\'annuncio. Dopo verbi di dichiarazione (annunciare) → condizionale passato.')">verifica</button>
+    <div class="qfb" id="c4f"></div>
+  </div>
+</div>
+
+<script>
+  let qm = {};
+  function qchk(id, ans, expl) {
+    if(qm[id]) return;
+    const s = document.getElementById(id), f = document.getElementById(id+'f');
+    if(!s.value){f.className='qfb no';f.textContent='Seleziona una risposta.';return;}
+    qm[id]=true;
+    if(s.value===ans){f.className='qfb ok';f.textContent='✓ Corretto — '+expl;}
+    else{f.className='qfb no';f.textContent='✗ Risposta corretta: "'+ans+'". '+expl;}
+    s.disabled=true; s.closest('.quiz-card').querySelector('.qbtn').disabled=true;
+  }
+</script>
+</body>
+</html>
